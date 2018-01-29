@@ -13,7 +13,8 @@
 2. modificar network/interfaces
 
 	* `nano /etc/network/interfaces`
-	```	iface eth0 inet manual	#opcional para evitar problemas con network manager
+	```	
+	iface eth0 inet manual	#opcional para evitar problemas con network manager
 		allow-hotplug br0
 		iface br0 inet dhcp
 			bridge_ports eth0	
@@ -28,7 +29,7 @@
 
 > brctl show Muestra los bridges en el -equipo
 
-	* # ip tuntap add mode tap user <user>
+	* `# ip tuntap add mode tap user <user>`
 	* `# ip tuntap list`
 	* `# brctl addif br0 tap0`	# anado tap0 como puerto de br0
 	* `$ MAC0=$(echo "02:"`openssl rand -hex 5 | sed 's/\(..\)/\1:/g; s/.$//'`)`	# asignar una MAC aleatoria
