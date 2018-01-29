@@ -27,10 +27,6 @@
 
 3. Configurar las maquinas
 
-	* Creamos un fichero de la imagen
-		`qemu-img create -f qcow2 jessie.qcow2 10G
-Formatting 'jessie.qcow2', fmt=qcow2 size=10737418240 encryption=off cluster_size=65536 lazy_refcounts=off`
-
 	> brctl show Muestra los bridges en el -equipo
 
 	* `# ip tuntap add mode tap user <user>`
@@ -38,17 +34,32 @@ Formatting 'jessie.qcow2', fmt=qcow2 size=10737418240 encryption=off cluster_siz
 	* `# brctl addif br0 tap0`	# anado tap0 como puerto de br0
 	* `$ MAC0=$(echo "02:"`openssl rand -hex 5 | sed 's/\(..\)/\1:/g; s/.$//'`)`	# asignar una MAC aleatoria
 
+	* Creamos un fichero de la imagen
+		`qemu-img create -b jessie-min.qcow2 -f qcow2 jessie1.qcow2 `
+		`qemu-img info jessie1.qcow2`
+	
+	* Levantamos los diferentes taps
+		`ip l set tap0 up`	
 	> repetir este proceso para cada maquina a crear  -root
+
 
 4. Arranco la maquina virtual
 
 	``` 
 	kvm -m 512 -hda jessie-1.qcow2 -device virtio-net,netdev=n0,mac=$MAC0 -netdev tap,id=n0,ifname=tap0,script=no,downscript=no
 	```
-	4.1 Utilizamos el ejecutable “kvm” que es equivalente a “qemu-system-x86_64 -enable-kvm”, asignamos 512 MiB de RAM a la máquina virtual y hacemos que utilice como disco duro el fichero de imagen jessie.qcow2.
-	4.2 Creamos en la máquina virtual un dispositivo de red virtio, denominado n0 y con la dirección MAC anteriormente generada.
-	4.3 Asociamos el dispositivo n0 de la máquina virtual con la interfaz tap0 que existe en el anfitrión, no utilizando ningún tipo de script al levantar ni al bajar dicha interfaz.
-	
+	* `kvm -m 512 -hda jessie-1.qcow2`
+	 Utilizamos el ejecutable “kvm” que es equivalente a “qemu-system-x86_64 -enable-kvm”, asignamos 512 MiB de RAM a la máquina virtual y hacemos que utilice como disco duro el fichero de imagen jessie.qcow2.
+	* `-device virtio-net,netdev=n0,mac=$MAC0`
+	 Creamos en la máquina virtual un dispositivo de red virtio, denominado n0 y con la dirección MAC anteriormente generada.(repetir para anadir otra tarjeta de red)
+	* `-netdev tap,id=n0,ifname=tap0,script=no,downscript=no`
+	 Asociamos el dispositivo n0 de la máquina virtual con la interfaz tap0 que existe en el anfitrión, no utilizando ningún tipo de script al levantar ni al bajar dicha interfaz.(repetir para anadir otra tarjeta de red)
+
 	* dhclient eth0	# para levantar la tarjeta de red
 
 	>25/1/18 -Me he quedado haciendo el aprovisionamiento ligero para arrancar varias maquinas virtuales. configurado nuevo tap y nueva MAC
+
+5. Trabajando con la maquina virtual
+	* `dhclient eth0` #conectarse a internet
+6. Apagar la maquina
+	* `poweroff`
