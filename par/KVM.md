@@ -30,15 +30,19 @@
 > brctl show Muestra los bridges en el -equipo
 
 	* `# ip tuntap add mode tap user <user>`
+	
 	* `# ip tuntap list`
+	
 	* `# brctl addif br0 tap0`	# anado tap0 como puerto de br0
+	
 	* `$ MAC0=$(echo "02:"`openssl rand -hex 5 | sed 's/\(..\)/\1:/g; s/.$//'`)`	# asignar una MAC aleatoria
 
 > repetir este proceso para cada maquina a crear  -root
 
 4. Arranco la maquina virtual
 
-``` kvm -m 512 -hda jessie-1.qcow2 -device virtio-net,netdev=n0,mac=$MAC0 -netdev tap,id=n0,ifname=tap0,script=no,downscript=no
+``` 
+	kvm -m 512 -hda jessie-1.qcow2 -device virtio-net,netdev=n0,mac=$MAC0 -netdev tap,id=n0,ifname=tap0,script=no,downscript=no
 ```
 	
 	* dhclient eth0	# para levantar la tarjeta de red
