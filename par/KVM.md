@@ -45,6 +45,9 @@ Formatting 'jessie.qcow2', fmt=qcow2 size=10737418240 encryption=off cluster_siz
 	``` 
 	kvm -m 512 -hda jessie-1.qcow2 -device virtio-net,netdev=n0,mac=$MAC0 -netdev tap,id=n0,ifname=tap0,script=no,downscript=no
 	```
+	4.1 Utilizamos el ejecutable “kvm” que es equivalente a “qemu-system-x86_64 -enable-kvm”, asignamos 512 MiB de RAM a la máquina virtual y hacemos que utilice como disco duro el fichero de imagen jessie.qcow2.
+	4.2 Creamos en la máquina virtual un dispositivo de red virtio, denominado n0 y con la dirección MAC anteriormente generada.
+	4.3 Asociamos el dispositivo n0 de la máquina virtual con la interfaz tap0 que existe en el anfitrión, no utilizando ningún tipo de script al levantar ni al bajar dicha interfaz.
 	
 	* dhclient eth0	# para levantar la tarjeta de red
 
