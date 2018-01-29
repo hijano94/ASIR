@@ -3,7 +3,8 @@
 
 ## Primeros pasos
 	
-	Primero tenemos que crear un bridge virtual para que se puedan conectar nuestras maquinas virtuales y acceder a internet.
+	Primero tenemos que crear un bridge virtual para que se puedan conectar 
+	nuestras maquinas virtuales y acceder a internet.
 
 1. instalar bridge-utils
 
@@ -23,18 +24,18 @@
 	* `ifdown br0`
 	* `ifup br0`
 
-> brctl show -Muestra los bridges en el equipo
+> brctl show Muestra los bridges en el -equipo
 
-	* `# ip tuntap add mode tap user <user>`
-	* `# ip tuntap list`
-	* `# brctl addif br0 tap0`	# anado tap0 como puerto de br0
-	* `$ MAC0=$(echo "02:"`openssl rand -hex 5 | sed 's/\(..\)/\1:/g; s/.$//'`)`	# asignar una MAC aleatoria
-> repetir este proceso para cada maquina a crear -como root
+	*	`# ip tuntap add mode tap user <user>`
+	* 	`# ip tuntap list`
+	* 	`# brctl addif br0 tap0`	# anado tap0 como puerto de br0
+	* 	`$ MAC0=$(echo "02:"`openssl rand -hex 5 | sed 's/\(..\)/\1:/g; s/.$//'`)`	# asignar una MAC aleatoria
+> repetir este proceso para cada maquina a crear  -root
 
 3. Arranco la maquina virtual
 
 	```kvm -m 512 -hda jessie-1.qcow2 -device virtio-net,netdev=n0,mac=$MAC0 -netdev tap,id=n0,ifname=tap0,script=no,downscript=no
 ```
-	* dhclient eth0	# para levantar la tarjeta de red
+	*	dhclient eth0	# para levantar la tarjeta de red
 
 >25/1/18 -Me he quedado haciendo el aprovisionamiento ligero para arrancar varias maquinas virtuales. configurado nuevo tap y nueva MAC
