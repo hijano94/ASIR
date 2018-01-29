@@ -57,8 +57,6 @@
 
 	* dhclient eth0	# para levantar la tarjeta de red
 
-	>25/1/18 -Me he quedado haciendo el aprovisionamiento ligero para arrancar varias maquinas virtuales. configurado nuevo tap y nueva MAC
-
 5. Trabajando con la maquina virtual
 	* `dhclient eth0` #conectarse a internet
 6. Apagar la maquina
