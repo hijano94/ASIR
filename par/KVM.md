@@ -27,6 +27,10 @@
 
 3. Configurar las maquinas
 
+	* Creamos un fichero de la imagen
+		`qemu-img create -f qcow2 jessie.qcow2 10G
+Formatting 'jessie.qcow2', fmt=qcow2 size=10737418240 encryption=off cluster_size=65536 lazy_refcounts=off`
+
 	> brctl show Muestra los bridges en el -equipo
 
 	* `# ip tuntap add mode tap user <user>`
