@@ -85,7 +85,6 @@ tamanos:
 RAM < 512 MB | swap doble que la RAM
 -------------|----------------------
 RAM 1GB - 4GB | swap del mismo tamano
---------------|---------------------
 RAM > 4GB | swap igual a 4GB
 
 ## Crear particion Swap:
