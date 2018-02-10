@@ -15,11 +15,11 @@
 
 ## Arquitecturas de disco:
 
-	*	CHS: arquitectura de disco? (antigua)
+*	CHS: arquitectura de disco? (antigua)
 	
 ## LBA: (moderna)
 	
-	*	 
+	
 
 ## Sistema de ficheros comunes
 
