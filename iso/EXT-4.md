@@ -20,10 +20,11 @@
 * Inodes per group: numero de inodos por grupo
 * Inodo size: tamano de inodo
 
+## Crear dispositivo de bloques: 
 > 24/1/18 -IMPL
-## crear dispositivo de bloques:
-### sistema de ficheros:	
-```
+
+### Sistema de ficheros:	
+
 fdisk  /dev/vdx
 command (m for help): n
 select: p
@@ -40,13 +41,11 @@ mkfs.ext4 --help 	(muestra las diferentes opciones para crear el
 mkfs.ext4 /dev/vdd1
 
 # Hay que montar el disco
-	* mount -t ext4 /dev/vdd1 /mnt
+* mount -t ext4 /dev/vdd1 /mnt
 
 # Llenar el disco de ceros
-	* dd if=/dev/zero of=/mnt bs=4096 count=124719
-					         (block size)(num blocks)
+* dd if=/dev/zero of=/mnt bs=4096 count=124719 **(block size)(num blocks)**
 
-```
 ## Creacion de un sistema de ficheros:
 
 ya tenemos formadas las particiones y ahora vamos a "hacerlo visible"/"montarlo"/generar el sistema de archivos
@@ -80,12 +79,13 @@ ya tenemos formadas las particiones y ahora vamos a "hacerlo visible"/"montarlo"
 
 # Swap
 
-Para amliar la memoria RAM en caso de que se llene, hoy dia casi inecearia.	
+Para amliar la memoria RAM en caso de que se llene, hoy dia casi innecesaria.	
 tamanos:
-RAM < 512 MB | swap doble que la RAM
+RAM | SWAP
 -------------|----------------------
-RAM 1GB - 4GB | swap del mismo tamano
-RAM > 4GB | swap igual a 4GB
+< 512 MB | doble que la RAM
+1GB - 4GB | del mismo tamano
+> 4GB |  igual a 4GB
 
 ## Crear particion Swap:
 	
