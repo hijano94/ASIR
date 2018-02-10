@@ -24,7 +24,7 @@
 
 > 24/1/18 -IMPL
 ## crear dispositivo de bloques:
-### sistema de ficheros:
+### sistema de ficheros:	
 ```
 fdisk  /dev/vdx
 command (m for help): n
@@ -69,3 +69,34 @@ mkfs.ext4 /dev/vdd1
 	mount -o ro,remount /dev/vdd1 /mnt 		# Cambiar los permisos de los sistemas de archivos (ro= read only)
 	
 ```
+
+# Practica
+
+## Vamos a crear una maquina virtual (LINUX) instalacion simple con una unica particion "/" (si acaso con swap tambien). Una vez creado la maquina, crearemos las diferentes particiones /home /srv /usr
+
+
+### pasos:
+	* hacer las tres partciones /home /srv /usr
+		* 
+	* Anadir en la configuracion de vitualbox 3 discos mas
+	* Monto cada particion en el disco correspondiente
+	* fsck orden de arranque de discos
+	* Administrar que en cada disco se guarde su informacion correspondiente
+
+# Swap
+
+	Para amliar la memoria RAM en caso de que se llene, hoy dia casi inecearia.	
+	tamanos:
+		* RAM < 512 MB 	swap doble que la RAM
+		* RAM 1GB - 4GB swap del mismo tamano
+		* RAM > 4GB 	swap igual a 4GB
+
+## Crear particion Swap:
+	
+	* fdisk 		
+	* partprobe(paquete "parted") #obliga a actualizar el estado de particiones
+	* `mkswap -L swap1 /dev/vdc1`
+	* `swapon /dev/vdc1` # activar la swap
+	* `swapon -s` # para ver si esta funcionando la swap
+	* `stress --cpu 8 --vm-bytes 2048`
+	* `stress -m 4 -t 20`
