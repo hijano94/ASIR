@@ -76,7 +76,7 @@ Primero tenemos que crear un bridge virtual para que se puedan conectar nuestras
 		* `ip link add name eth0.110 link eth0 type vlan id 110`
 		* Especificar la WLAN de la maquina `brctl addif br01 eth0.1` 
 		* `brctl delif br0 eth0`
-		* `brctl addif br01 eth0`
+		* `brctl addif br01 eth0` #esto no hace falta
 		* Anadir el "tap" `ip tuntap add mode tap user <user>` `brctl addif br01 tap0`
 
 ## link aggregation (bonding)
@@ -95,5 +95,10 @@ Primero tenemos que crear un bridge virtual para que se puedan conectar nuestras
 ip l set dev bond0 master br0
 ip l set dev tap0 master bond0
 
-Para conectar por link aggregation a una maquina virtual hay que crear los tap, crear bond, linkear los tap a bond, crear br y linkearle bond. Asignar IP en br0
+Para conectar por link aggregation a una maquina virtual hay que: crear los tap
+crear bond
+linkear los tap a bond
+crear br 
+linkearle bond
+Asignar IP en br0
 En la maquina virtual crear el mismo bond y linkear las eth
