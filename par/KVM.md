@@ -32,7 +32,7 @@ Primero tenemos que crear un bridge virtual para que se puedan conectar nuestras
 	* `$ MAC0=$(echo "02:"`openssl rand -hex 5 | sed 's/\(..\)/\1:/g; s/.$//'`)`	# asignar una MAC aleatoria
 
 	* Creamos un fichero de la imagen
-		`qemu-img create -b jessie-min.qcow2 -f qcow2 jessie1.qcow2 `
+		`qemu-img create -b jessie-1.qcow2 -f qcow2 jessie1.qcow2 ` (qemu-utils)
 		`qemu-img info jessie1.qcow2`
 	
 	* Levantamos los diferentes taps
@@ -88,8 +88,6 @@ Primero tenemos que crear un bridge virtual para que se puedan conectar nuestras
 * crear el bonding, agregar los tap con ifenslave
 * ver estado del bonding `cat /proc/net/bonding/bond`
 
-`ip l set dev bond0 master br0`
-`ip l set dev tap0 master bond0`
 
 Para conectar por link aggregation a una maquina virtual hay que crear los tap, crear bond, linkear los tap a bond, crear br y linkearle bond. Asignar IP en br0
 En la maquina virtual crear el mismo bond y linkear las ethX

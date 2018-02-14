@@ -3,11 +3,11 @@
 
 ## Sistemas de particiones:
 
-1.	MBR: (Master Boot Record)(antiguo) Primer sector de toda 		esa pista, contiene codigo para arrancar el disco e 			informacion de las particiones.
+1.	MBR: (Master Boot Record)(antiguo) Primer sector de toda esa pista, contiene codigo para arrancar el disco e informacion de las particiones.
 
 2.	GPT: (Tabla de Particiones GUID)(actual) 
 	*	Acceso LBA 
-	*	Utiliza UEFI para crearse su propia particion usada por 	la bios para arrancar las particiones, la informacion		de las particiones se guarda en la particion propia de 		UEFI.
+	*	Utiliza UEFI para crearse su propia particion usada por la bios para arrancar las particiones, la informacion de las particiones se guarda en la particion propia de 		UEFI.
 	*	Para un sistema de 64 bits necesita minimo 4 particiones
 	*	Normalmente sistema de ficheros FAT-32
 *	Alinear particiones con multiplos de 2048
